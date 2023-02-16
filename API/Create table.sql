@@ -9,11 +9,11 @@ CREATE TABLE jeux (
   ID SERIAL PRIMARY KEY,
   nom VARCHAR(30),
   type VARCHAR(30),
+  zone int,
 );
 CREATE TABLE zones (
   ID SERIAL PRIMARY KEY,
-  nom VARCHAR(30),
-  jeux int[]
+  nom VARCHAR(30)
 );
 CREATE TABLE creneaux (
   ID SERIAL PRIMARY KEY,
