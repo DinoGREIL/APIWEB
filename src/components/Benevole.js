@@ -29,12 +29,14 @@ const Benevole = (props) => {
                     event.preventDefault();
                     ajouterBenevole({
                         id: Date.now(),
-                        name: event.target.elements.name.value,
+                        name: event.target.elements.nom.value,
                     });
-                    event.target.elements.name.value = '';
+                    event.target.elements.nom.value = '';
                 }}
             >
-                <input type="text" name="name" />
+                <input type="text" name="nom" />
+                <input type="text" name="prenom"/>
+                <input type="text" name="email"/>
                 <button type="submit">Ajouter Bénévole</button>
             </form>
         </div>
