@@ -1,14 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Benevole = (props) => {
     const [benevoles, setBenevoles] = useState([]);
-
-    const ajouterBenevole = (benevole) => {
-        setBenevoles([...benevoles, benevole]);
+    const getbenevoles = ()=>{
+        fetch('http://localhost:3002/benevoles')
+            .then((res) => res.json())
+            .then((result) => {
+              console.log(result);
+              setBenevoles(result);
+              
+            })
+    }
+    useEffect(()=>{
+        
+        getbenevoles()},[])
+    const ajouterBenevole = async (benevole) => {
+        
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nom: benevole.nom, prenom:benevole.prenom, email:benevole.email })
+        };
+        await fetch('http://localhost:3002/benevoles', requestOptions)
+            .then(response => console.log(response))
+            
+        getbenevoles();
     };
 
     const supprimerBenevole = (id) => {
-        setBenevoles(benevoles.filter((benevole) => benevole.id !== id));
+        //fetch('http://localhost:3002/relations/'+id, { method: 'DELETE' })
+        fetch('http://localhost:3002/benevoles/'+id, { method: 'DELETE' })
+        .then(() => getbenevoles())
+        
+        
     };
 
     return (
@@ -17,7 +41,7 @@ const Benevole = (props) => {
             <ul>
                 {benevoles.map((benevole) => (
                     <li key={benevole.id}>
-                        {benevole.name}
+                        {benevole.nom}
                         <button onClick={() => supprimerBenevole(benevole.id)}>
                             Supprimer
                         </button>
@@ -29,7 +53,10 @@ const Benevole = (props) => {
                     event.preventDefault();
                     ajouterBenevole({
                         id: Date.now(),
-                        name: event.target.elements.nom.value,
+                        nom: event.target.elements.nom.value,
+                        prenom: event.target.elements.prenom.value,
+                        email: event.target.elements.email.value,
+
                     });
                     event.target.elements.nom.value = '';
                 }}
