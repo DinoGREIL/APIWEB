@@ -34,7 +34,7 @@ const Benevole = (props) => {
                     event.target.elements.nom.value = '';
                 }}
             >
-                <input type="text" name="nom" />
+                <input type="text" name="nom"/>
                 <input type="text" name="prenom"/>
                 <input type="text" name="email"/>
                 <button type="submit">Ajouter Bénévole</button>

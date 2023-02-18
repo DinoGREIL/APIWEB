@@ -9,8 +9,27 @@ const Jeu = (props) => {
         { value: 'green', label: 'green3' },
         { value: 'yellow', label: 'yellow' },
       ]);
-    const ajouterJeu = (jeu) => {
-        setJeux([...jeux, jeu]);
+    const getjeux=() =>{
+        fetch('http://localhost:3002/jeux')
+            .then((res) => res.json())
+            .then((result) => {
+              console.log(result);
+              setJeux(result);
+              
+            })
+    }
+    const ajouterJeu = async (jeu) => {
+        
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nom: jeu.name, type: jeu.type, zone:jeu.zone })
+        };
+        await fetch('http://localhost:3002/jeux', requestOptions)
+            .then(response => console.log(response))
+            
+        getjeux();
+        
     };
     useEffect(()=>{
         fetch('http://localhost:3002/zones')
@@ -19,10 +38,13 @@ const Jeu = (props) => {
           console.log(result);
           setList(result);
           
-        });},[])
+        });
+        getjeux()},[])
 
     const supprimerJeu = (id) => {
-        setJeux(jeux.filter((jeu) => jeu.id !== id));
+        
+        fetch('http://localhost:3002/jeux/'+id, { method: 'DELETE' })
+        .then(() => getjeux());
     };
 
     return (
@@ -31,7 +53,7 @@ const Jeu = (props) => {
             <ul>
                 {jeux.map((jeu) => (
                     <li key={jeu.id}>
-                        {jeu.name}
+                        {jeu.nom}
                         <button onClick={() => supprimerJeu(jeu.id)}>Supprimer</button>
                     </li>
                 ))}
@@ -42,11 +64,13 @@ const Jeu = (props) => {
                     ajouterJeu({
                         id: Date.now(),
                         name: event.target.elements.name.value,
+                        type: event.target.elements.type.value,
+                        zone: event.target.elements.zone.value
                     });
                     event.target.elements.name.value = '';
                 }}
             >
-                <input type="text" name="name" />
+                <input type="text" name="name"/>
                 
                 <select  name="type">
                             <option value="enfant">enfant</option>
@@ -56,7 +80,7 @@ const Jeu = (props) => {
                             <option value="expert">expert</option>           
                   </select>
                   <select name="zone">
-                  {zones.map(({ value, label }, index) => <option value={value} >{label}</option>)}
+                  {zones.map((zone) => <option value={zone.id} >{zone.nom}</option>)}
                   </select>
                 <button type="submit">Ajouter Jeu</button>
             </form>
