@@ -23,8 +23,8 @@ CREATE TABLE creneaux (
 
 CREATE TABLE relations (
      idCreneau int,
-     foreign key (idCreneau) references creneaux(ID),
+     foreign key (idCreneau) references creneaux(ID) ON DELETE CASCADE,
       idBenevole int,
-      foreign key (idBenevole) references benevoles(ID), 
+      foreign key (idBenevole) references benevoles(ID) ON DELETE CASCADE, 
       idZone int,
-      foreign key (idZone) references zones(ID));
+      foreign key (idZone) references zones(ID) ON DELETE CASCADE);

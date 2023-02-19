@@ -1,14 +1,17 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
-const port = 3000
+const port = 3002
 const db = require('./queries')
+const cors = require("cors");
+
 app.use(bodyParser.json())
 app.use(
   bodyParser.urlencoded({
     extended: true,
   })
 )
+app.use(cors())
 app.get('/', (request, response) => {
     response.json({ info: 'Node.js, Express, and Postgres API' })
   })
@@ -41,7 +44,8 @@ app.get('/', (request, response) => {
   app.get('/relations', db.getRelations)
   app.get('/relations/:id', db.getRelationById)
   app.post('/relations', db.createRelation)
-  
+  app.delete('/relations/:id',db.deleteRelation)
+
   app.get('/jeuxnom',db.getJeuxnom)
   app.get('/jeuxtype',db.getJeuxtype)
   app.get('/jeuxzone',db.getJeuxzone)

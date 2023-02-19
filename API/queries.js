@@ -347,7 +347,16 @@ const getBenevoles = (request, response) => {
       response.status(200).send(`creneau deleted with ID: ${id}`)
     })
   }
-
+  const deleteRelation = (request, response) => {
+    const id = parseInt(request.params.id)
+  
+    pool.query('DELETE FROM creneaux WHERE idbenevole = $1', [id], (error, results) => {
+      if (error) {
+        response.status(200).send(`no relation with ID: ${id}`)
+      }
+      response.status(200).send(`relation deleted with ID: ${id}`)
+    })
+  }
 
   module.exports = {
     getBenevoles,
@@ -377,7 +386,8 @@ const getBenevoles = (request, response) => {
     getJeuxtype,
     getJeuxzone,
     getBenevolesbycreneauxbyzone,
-    getBenevolesbyzonebycreneau
+    getBenevolesbyzonebycreneau,
+    deleteRelation
     
   }
 
