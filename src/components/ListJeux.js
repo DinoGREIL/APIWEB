@@ -32,49 +32,25 @@ const ListJeux = (props) => {
             })
     }
      
-    const getzones =  ()=>{
-        fetch('http://localhost:3002/zones')
-            .then((res) => res.json())
-            .then((result) => {
-              console.log(result);
-              setZones(result);
-              
-            })
-    }
+    
     useEffect(()=>{
         
         getjeuxnom();
-        getzones();
+        
         
         },[])
-    const regularise= ()=>{
-        let jeuxwnom=jeux
-        for (let i=0;i<jeux.length;i++){
-            let change=false
-            let j=0
-            while (!change && j<zones.length){
-                if(zones[j].id === jeux[i].zone){
-                    jeux[i].nomzone=zones[j].nom
-                    change=true
-                }
-                j+=1
-            }
-        }
-        console.log("hahadff",jeuxwnom)
-        setJeux(jeuxwnom)
-        console.log("kvhdfv",jeux)
-    }
-    const changeorder= async (order)=>{
+    
+    const changeorder=  (order)=>{
         if (order==="nom"){
-            await getjeuxnom()
+             getjeuxnom()
             
         }
         else if(order==="type"){
-            await getjeuxtype()
+             getjeuxtype()
             
         }
         else if(order==="zone"){
-            await getjeuxzone()
+             getjeuxzone()
             
         }
         
