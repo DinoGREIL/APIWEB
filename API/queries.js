@@ -7,7 +7,7 @@ const pool = new Pool({
   port: 5432,
 })
 const getBenevoles = (request, response) => {
-    pool.query('SELECT * FROM benevoles ORDER BY id ASC', (error, results) => {
+    pool.query('SELECT * FROM benevoles ORDER BY idbenevole ASC', (error, results) => {
       if (error) {
         throw error
       }
@@ -15,7 +15,7 @@ const getBenevoles = (request, response) => {
     })
   }
   const getJeux = (request, response) => {
-    pool.query('SELECT * FROM jeux ORDER BY id ASC', (error, results) => {
+    pool.query('SELECT * FROM jeux ORDER BY idjeux ASC', (error, results) => {
       if (error) {
         throw error
       }
@@ -23,7 +23,7 @@ const getBenevoles = (request, response) => {
     })
   }
   const getJeuxnom= (request, response) => {
-    pool.query('SELECT * FROM jeux ORDER BY nom ASC', (error, results) => {
+    pool.query('SELECT * FROM jeux JOIN zones on zones.idzone=jeux.zone ORDER BY jeux.nomjeux ASC', (error, results) => {
       if (error) {
         throw error
       }
@@ -31,7 +31,7 @@ const getBenevoles = (request, response) => {
     })
   }
   const getJeuxtype= (request, response) => {
-    pool.query('SELECT * FROM jeux ORDER BY type ASC', (error, results) => {
+    pool.query('SELECT * FROM jeux JOIN zones on zones.idzone=jeux.zone ORDER BY type ASC', (error, results) => {
       if (error) {
         throw error
       }
@@ -40,7 +40,7 @@ const getBenevoles = (request, response) => {
   }
   const getJeuxzone= (request, response) => {
     
-    pool.query('SELECT * FROM jeux ORDER BY zone ASC', (error, results) => {
+    pool.query('SELECT * FROM jeux JOIN zones on zones.idzone=jeux.zone ORDER BY zone ASC', (error, results) => {
       if (error) {
         throw error
       }
@@ -48,7 +48,7 @@ const getBenevoles = (request, response) => {
     })
   }
   const getZones = (request, response) => {
-    pool.query('SELECT * FROM zones ORDER BY id ASC', (error, results) => {
+    pool.query('SELECT * FROM zones ORDER BY idzone ASC', (error, results) => {
       if (error) {
         throw error
       }
@@ -56,7 +56,7 @@ const getBenevoles = (request, response) => {
     })
   }
   const getCreneaux = (request, response) => {
-    pool.query('SELECT * FROM creneaux ORDER BY id ASC', (error, results) => {
+    pool.query('SELECT * FROM creneaux ORDER BY idcreneau ASC', (error, results) => {
       if (error) {
         throw error
       }
@@ -76,7 +76,7 @@ const getBenevoles = (request, response) => {
   const getBenevoleById = (request, response) => {
     const id = parseInt(request.params.id)
   
-    pool.query('SELECT * FROM benevoles WHERE id = $1', [id], (error, results) => {
+    pool.query('SELECT * FROM benevoles WHERE idbenevole = $1', [id], (error, results) => {
       if (error) {
         throw error
       }
@@ -86,7 +86,7 @@ const getBenevoles = (request, response) => {
   const getJeuById = (request, response) => {
     const id = parseInt(request.params.id)
   
-    pool.query('SELECT * FROM jeux WHERE id = $1', [id], (error, results) => {
+    pool.query('SELECT * FROM jeux WHERE idjeux = $1', [id], (error, results) => {
       if (error) {
         throw error
       }
@@ -97,7 +97,7 @@ const getBenevoles = (request, response) => {
   const getZoneById = (request, response) => {
     const id = parseInt(request.params.id)
   
-    pool.query('SELECT * FROM zones WHERE id = $1', [id], (error, results) => {
+    pool.query('SELECT * FROM zones WHERE idzone = $1', [id], (error, results) => {
       if (error) {
         throw error
       }
@@ -107,7 +107,7 @@ const getBenevoles = (request, response) => {
   const getCreneauById = (request, response) => {
     const id = parseInt(request.params.id)
   
-    pool.query('SELECT * FROM creneaux WHERE id = $1', [id], (error, results) => {
+    pool.query('SELECT * FROM creneaux WHERE idcreneau = $1', [id], (error, results) => {
       if (error) {
         throw error
       }
@@ -128,7 +128,7 @@ const getBenevoles = (request, response) => {
   const getBenevolesbycreneauxbyzone= (request, response) => {
     const idzone = parseInt(request.params.id)
   
-    pool.query('SELECT * FROM relations WHERE idZone = $1', [idzone], (error, results) => {
+    pool.query('SELECT * FROM relations join creneaux on creneaux.idcreneau = relations.idcreneau join benevoles on benevoles.idbenevole=relations.idbenevole  WHERE idZone = $1 ORDER BY relations.idCreneau ASC', [idzone], (error, results) => {
       if (error) {
         throw error
       }
@@ -141,7 +141,7 @@ const getBenevoles = (request, response) => {
   const getBenevolesbyzonebycreneau= (request, response) => {
     const idcreneau = parseInt(request.params.id)
   
-    pool.query('SELECT * FROM relations WHERE idCreneau = $1', [idcreneau], (error, results) => {
+    pool.query('SELECT * FROM relations join zones on zones.idzone = relations.idzone join benevoles on benevoles.idbenevole=relations.idbenevole WHERE idCreneau = $1 ORDER BY relations.idZone ASC', [idcreneau], (error, results) => {
       if (error) {
         throw error
       }
@@ -156,7 +156,7 @@ const getBenevoles = (request, response) => {
   const createBenevole = (request, response) => {
     const { nom,prenom, email } = request.body
   
-    pool.query('INSERT INTO benevoles (nom,prenom, email) VALUES ($1, $2,$3) RETURNING *', [nom,prenom, email], (error, results) => {
+    pool.query('INSERT INTO benevoles (nombenevole,prenom, email) VALUES ($1, $2,$3) RETURNING *', [nom,prenom, email], (error, results) => {
       if (error) {
         throw error
       }
@@ -166,7 +166,7 @@ const getBenevoles = (request, response) => {
   const createJeu = (request, response) => {
     const { nom,type,zone } = request.body
   
-    pool.query('INSERT INTO jeux (nom, type,zone) VALUES ($1, $2,$3) RETURNING *', [nom,type,zone], (error, results) => {
+    pool.query('INSERT INTO jeux (nomjeux, type,zone) VALUES ($1, $2,$3) RETURNING *', [nom,type,zone], (error, results) => {
       if (error) {
         throw error
       }
@@ -176,7 +176,7 @@ const getBenevoles = (request, response) => {
   const createZone = (request, response) => {
     const { nom } = request.body
   
-    pool.query('INSERT INTO zones (nom,jeux) VALUES ($1) RETURNING *', [nom], (error, results) => {
+    pool.query('INSERT INTO zones (nomzone,jeux) VALUES ($1) RETURNING *', [nom], (error, results) => {
       if (error) {
         throw error
       }
@@ -208,7 +208,7 @@ const getBenevoles = (request, response) => {
     const { nom,prenom, email } = request.body
   
     pool.query(
-      'UPDATE benevoles SET nom = $1, prenom = $2,email=$3 WHERE id = $4',
+      'UPDATE benevoles SET nombenevole = $1, prenom = $2,email=$3 WHERE id = $4',
       [nom,prenom, email , id],
       (error, results) => {
         if (error) {
@@ -224,7 +224,7 @@ const getBenevoles = (request, response) => {
     const { nom,type,zone } = request.body
   
     pool.query(
-      'UPDATE jeux SET nom = $1, type = $2,zone= $3 WHERE id = $4',
+      'UPDATE jeux SET nomjeux = $1, type = $2,zone= $3 WHERE id = $4',
       [nom,type,zone, id],
       (error, results) => {
         if (error) {
@@ -240,7 +240,7 @@ const getBenevoles = (request, response) => {
     const { nom } = request.body
   
     pool.query(
-      'UPDATE zones SET nom = $1 WHERE id = $2',
+      'UPDATE zones SET nomzone = $1 WHERE id = $2',
       [nom, id],
       (error, results) => {
         if (error) {
@@ -256,7 +256,7 @@ const getBenevoles = (request, response) => {
     const { debut,fin } = request.body
   
     pool.query(
-      'UPDATE creneaux SET nom = $1,fin=$2 WHERE id = $3',
+      'UPDATE creneaux SET debut = $1,fin=$2 WHERE id = $3',
       [debut,fin, id],
       (error, results) => {
         if (error) {
@@ -270,7 +270,7 @@ const getBenevoles = (request, response) => {
   const deleteBenevole = (request, response) => {
     const id = parseInt(request.params.id)
   
-    pool.query('DELETE FROM benevoles WHERE id = $1', [id], (error, results) => {
+    pool.query('DELETE FROM benevoles WHERE idbenevole = $1', [id], (error, results) => {
       if (error) {
         throw error
       }
@@ -281,7 +281,7 @@ const getBenevoles = (request, response) => {
   const deleteJeu = (request, response) => {
     const id = parseInt(request.params.id)
   
-    pool.query('DELETE FROM jeux WHERE id = $1', [id], (error, results) => {
+    pool.query('DELETE FROM jeux WHERE idjeux = $1', [id], (error, results) => {
       if (error) {
         throw error
       }
@@ -292,7 +292,7 @@ const getBenevoles = (request, response) => {
   const deleteZone = (request, response) => {
     const id = parseInt(request.params.id)
   
-    pool.query('DELETE FROM zones WHERE id = $1', [id], (error, results) => {
+    pool.query('DELETE FROM zones WHERE idzone = $1', [id], (error, results) => {
       if (error) {
         throw error
       }
@@ -303,7 +303,7 @@ const getBenevoles = (request, response) => {
   const deleteCreneau = (request, response) => {
     const id = parseInt(request.params.id)
   
-    pool.query('DELETE FROM creneaux WHERE id = $1', [id], (error, results) => {
+    pool.query('DELETE FROM creneaux WHERE idcreneau = $1', [id], (error, results) => {
       if (error) {
         throw error
       }

@@ -42,12 +42,12 @@ const Benevole = (props) => {
             <ul>
                 {benevoles.map((benevole) => (
                     <li key={benevole.id}>
-                        <input type="text" id={benevole.id} value={benevole.nom} onChange={handleChangenom(benevole.id)}></input>
-                        <button onClick={() => supprimerBenevole(benevole.id)}>
+                        <input type="text" id={benevole.idbenevole} value={benevole.nombenevole} onChange={handleChangenom(benevole.id)}></input>
+                        <button onClick={() => supprimerBenevole(benevole.idbenevole)}>
                             Supprimer
                         </button>
                         <button onClick={()=>updateBenevole({
-                            id: benevole.id,
+                            id: benevole.idbenevole,
                             //nom: event.target.elements.nom.value,
                             //prenom: event.target.elements.prenom.value,
                             //email: event.target.elements.email.value,

@@ -52,9 +52,9 @@ const Jeu = (props) => {
             <h2>Jeux</h2>
             <ul>
                 {jeux.map((jeu) => (
-                    <li key={jeu.id}>
-                        {jeu.nom}
-                        <button onClick={() => supprimerJeu(jeu.id)}>Supprimer</button>
+                    <li key={jeu.idjeux}>
+                        {jeu.nomjeux}
+                        <button onClick={() => supprimerJeu(jeu.idjeux)}>Supprimer</button>
                     </li>
                 ))}
             </ul>
@@ -80,7 +80,7 @@ const Jeu = (props) => {
                             <option value="expert">expert</option>           
                   </select>
                   <select name="zone">
-                  {zones.map((zone) => <option value={zone.id} >{zone.nom}</option>)}
+                  {zones.map((zone) => <option value={zone.idzone} >{zone.nomzone}</option>)}
                   </select>
                 <button type="submit">Ajouter Jeu</button>
             </form>

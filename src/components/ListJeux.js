@@ -45,7 +45,7 @@ const ListJeux = (props) => {
         
         getjeuxnom();
         getzones();
-        regularise();
+        
         },[])
     const regularise= ()=>{
         let jeuxwnom=jeux
@@ -77,7 +77,7 @@ const ListJeux = (props) => {
             await getjeuxzone()
             
         }
-        regularise()
+        
     }
 
     
@@ -94,7 +94,7 @@ const ListJeux = (props) => {
                   <ul>
                 {jeux.map((jeu) => (
                     <li key={jeu.id}>
-                        {jeu.nom} {jeu.type} {jeu.zone}
+                        {jeu.nomjeux} {jeu.type} {jeu.nomzone}
                         
                     </li>
                 ))}

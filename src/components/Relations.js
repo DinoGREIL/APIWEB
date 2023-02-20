@@ -70,13 +70,13 @@ const Relations = (props) => {
                 }}
             >
                 <select name="creneau">
-                  {creneaux.map((creneau) => <option value={creneau.id} >{creneau.debut} - {creneau.fin}</option>)}
+                  {creneaux.map((creneau) => <option value={creneau.idcreneau} >{creneau.debut} - {creneau.fin}</option>)}
                   </select>
                 <select name="benevole">
-                  {benevoles.map((benevole) => <option value={benevole.id} >{benevole.nom} {benevole.prenom}</option>)}
+                  {benevoles.map((benevole) => <option value={benevole.idbenevole} >{benevole.nombenevole} {benevole.prenom}</option>)}
                   </select>
                 <select name="zone">
-                  {zones.map((zone) => <option value={zone.id} >{zone.nom}</option>)}
+                  {zones.map((zone) => <option value={zone.idzone} >{zone.nomzone}</option>)}
                   </select>
                 <button type="submit">Ajouter Relation</button>
             </form>
