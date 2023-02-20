@@ -132,28 +132,9 @@ const getBenevoles = (request, response) => {
       if (error) {
         throw error
       }
-      res=[]
-      for (let i=0;i<results.rows.length;i++){
-          var benevole=results.rows[i].idBenevole
-          var creneau=results.rows[i].idCreneau
-          var benevolenom;
-          var creneaunom;
-          pool.query('SELECT * FROM benevoles WHERE id = $1', [benevole], (error, resultsbenevole) => {
-        if (error) {
-          throw error
-        }
-        benevolenom=resultsbenevole.rows
-      })
-      pool.query('SELECT * FROM creneaux WHERE id = $1', [creneau], (error, resultscreneau) => {
-        if (error) {
-          throw error
-        }
-        creneaunom=resultscreneau.rows
-      })
-      res.push([benevolenom,creneaunom])
-      }
       
-      response.status(200).json(res)
+      
+      response.status(200).json(results.rows)
     })
   }
 
@@ -164,29 +145,11 @@ const getBenevoles = (request, response) => {
       if (error) {
         throw error
       }
-      res=[]
-      for (let i=0;i<results.rows.length;i++){
-          var benevole=results.rows[i].idBenevole
-          var zone=results.rows[i].idZone
-          var benevolenom;
-          var zonenom;
-          pool.query('SELECT * FROM benevoles WHERE id = $1', [benevole], (error, resultsbenevole) => {
-        if (error) {
-          throw error
-        }
-        benevolenom=resultsbenevole.rows
-      })
-      pool.query('SELECT * FROM zones WHERE id = $1', [zone], (error, resultszone) => {
-        if (error) {
-          throw error
-        }
-        zonenom=resultszone.rows
-      })
-      res.push([benevolenom,zonenom])
-      }
       
-      response.status(200).json(res)
+      
+      response.status(200).json(results.rows)
     })
+    
   }
 
 

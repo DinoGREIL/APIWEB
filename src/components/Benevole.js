@@ -28,23 +28,32 @@ const Benevole = (props) => {
     };
 
     const supprimerBenevole = (id) => {
-        //fetch('http://localhost:3002/relations/'+id, { method: 'DELETE' })
+        
         fetch('http://localhost:3002/benevoles/'+id, { method: 'DELETE' })
         .then(() => getbenevoles())
         
         
     };
-
+    const updateBenevole = (benevole)=>{console.log(benevole)}
+    const handleChangenom =(id)=>{console.log(id)}
     return (
         <div>
             <h2>Benevoles</h2>
             <ul>
                 {benevoles.map((benevole) => (
                     <li key={benevole.id}>
-                        {benevole.nom}
+                        <input type="text" id={benevole.id} value={benevole.nom} onChange={handleChangenom(benevole.id)}></input>
                         <button onClick={() => supprimerBenevole(benevole.id)}>
                             Supprimer
                         </button>
+                        <button onClick={()=>updateBenevole({
+                            id: benevole.id,
+                            //nom: event.target.elements.nom.value,
+                            //prenom: event.target.elements.prenom.value,
+                            //email: event.target.elements.email.value,
+
+
+                        })}>Change</button>
                     </li>
                 ))}
             </ul>
@@ -59,6 +68,8 @@ const Benevole = (props) => {
 
                     });
                     event.target.elements.nom.value = '';
+                    event.target.elements.prenom.value = '';
+                    event.target.elements.email.value = '';
                 }}
             >
                 <input type="text" name="nom"/>

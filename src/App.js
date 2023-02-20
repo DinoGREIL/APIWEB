@@ -4,6 +4,7 @@ import React from 'react';
 import Benevole from './components/Benevole';
 import Jeux from './components/Jeux';
 import Relations from'./components/Relations';
+import ListJeux from './components/ListJeux';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Benevole />
         <Jeux />
         <Relations/>
+        <ListJeux/>
       </div>
   );
 }
