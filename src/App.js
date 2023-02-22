@@ -5,6 +5,8 @@ import Benevole from './components/Benevole';
 import Jeux from './components/Jeux';
 import Relations from'./components/Relations';
 import ListJeux from './components/ListJeux';
+import ListBenevolebycreneau from './components/ListBenevolebycreneau';
+import ListBenevolebyzone from './components/ListBenevolebyzone';
 
 function App() {
   return (
@@ -13,6 +15,9 @@ function App() {
         <Jeux />
         <Relations/>
         <ListJeux/>
+        <ListBenevolebycreneau/>
+        <ListBenevolebyzone/>
+
       </div>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import Unbenevole from './Unbenevole';
 const Benevole = (props) => {
     const [benevoles, setBenevoles] = useState([]);
     const getbenevoles = ()=>{
@@ -41,20 +41,7 @@ const Benevole = (props) => {
             <h2>Benevoles</h2>
             <ul>
                 {benevoles.map((benevole) => (
-                    <li key={benevole.id}>
-                        <input type="text" id={benevole.idbenevole} value={benevole.nombenevole} onChange={handleChangenom(benevole.id)}></input>
-                        <button onClick={() => supprimerBenevole(benevole.idbenevole)}>
-                            Supprimer
-                        </button>
-                        <button onClick={()=>updateBenevole({
-                            id: benevole.idbenevole,
-                            //nom: event.target.elements.nom.value,
-                            //prenom: event.target.elements.prenom.value,
-                            //email: event.target.elements.email.value,
-
-
-                        })}>Change</button>
-                    </li>
+                    <Unbenevole benevole={benevole} getbenevoles={getbenevoles}/>
                 ))}
             </ul>
             <form
