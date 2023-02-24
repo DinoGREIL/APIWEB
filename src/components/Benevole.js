@@ -15,11 +15,11 @@ const Benevole = (props) => {
         
         getbenevoles()},[])
     const ajouterBenevole = async (benevole) => {
-        
+        console.log("jfdkgfd",benevole)
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ nom: benevole.nom, prenom:benevole.prenom, email:benevole.email })
+            body: JSON.stringify({ nombenevole: benevole.nombenevole, prenom:benevole.prenom, email:benevole.email })
         };
         await fetch('http://localhost:3002/benevoles', requestOptions)
             .then(response => console.log(response))
@@ -49,7 +49,7 @@ const Benevole = (props) => {
                     event.preventDefault();
                     ajouterBenevole({
                         id: Date.now(),
-                        nom: event.target.elements.nom.value,
+                        nombenevole: event.target.elements.nom.value,
                         prenom: event.target.elements.prenom.value,
                         email: event.target.elements.email.value,
 

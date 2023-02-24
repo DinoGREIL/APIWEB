@@ -36,8 +36,8 @@ const ListBenevolebyzone = (props) => {
             <ul>
                 {benevoles.map((benevole) => (
                     <li key={benevole.id}>
-                        <input type="text" id={benevole.idbenevole} value={benevole.nombenevole} ></input>
-                        <input type="text" id={benevole.idcreneau} value={benevole.debut}></input>
+                        {benevole.nombenevole} {benevole.prenom} {benevole.debut}-{benevole.fin}
+                        
                         
                     </li>
                 ))}

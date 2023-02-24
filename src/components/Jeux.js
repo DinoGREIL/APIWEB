@@ -1,4 +1,5 @@
 import React, { useState,useEffect } from 'react';
+import Unjeu from './Unjeu';
 
 const Jeu = (props) => {
     const [jeux, setJeux] = useState([]);
@@ -52,10 +53,7 @@ const Jeu = (props) => {
             <h2>Jeux</h2>
             <ul>
                 {jeux.map((jeu) => (
-                    <li key={jeu.idjeux}>
-                        {jeu.nomjeux}
-                        <button onClick={() => supprimerJeu(jeu.idjeux)}>Supprimer</button>
-                    </li>
+                    <Unjeu getjeux={getjeux} jeu={jeu}/>
                 ))}
             </ul>
             <form

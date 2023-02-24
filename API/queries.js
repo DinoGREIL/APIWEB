@@ -154,9 +154,9 @@ const getBenevoles = (request, response) => {
 
 
   const createBenevole = (request, response) => {
-    const { nom,prenom, email } = request.body
-  
-    pool.query('INSERT INTO benevoles (nombenevole,prenom, email) VALUES ($1, $2,$3) RETURNING *', [nom,prenom, email], (error, results) => {
+    const { nombenevole,prenom, email } = request.body
+    console.log(request.body)
+    pool.query('INSERT INTO benevoles (nombenevole,prenom, email) VALUES ($1, $2,$3) RETURNING *', [nombenevole,prenom, email], (error, results) => {
       if (error) {
         throw error
       }
@@ -204,12 +204,13 @@ const getBenevoles = (request, response) => {
     })
   }
   const updateBenevole = (request, response) => {
+    console.log("jnkfdng",typeof(request.params.id))
     const id = parseInt(request.params.id)
-    const { nom,prenom, email } = request.body
-  
+    const { nombenevole,prenom, email } = request.body
+    console.log(request.params)
     pool.query(
-      'UPDATE benevoles SET nombenevole = $1, prenom = $2,email=$3 WHERE id = $4',
-      [nom,prenom, email , id],
+      'UPDATE benevoles SET nombenevole = $1, prenom = $2,email=$3 WHERE idbenevole = $4',
+      [nombenevole,prenom,email,id],
       (error, results) => {
         if (error) {
           throw error
@@ -221,11 +222,11 @@ const getBenevoles = (request, response) => {
 
   const updateJeu = (request, response) => {
     const id = parseInt(request.params.id)
-    const { nom,type,zone } = request.body
+    const { nomjeux,type,zone } = request.body
   
     pool.query(
-      'UPDATE jeux SET nomjeux = $1, type = $2,zone= $3 WHERE id = $4',
-      [nom,type,zone, id],
+      'UPDATE jeux SET nomjeux = $1, type = $2,zone= $3 WHERE idjeux = $4',
+      [nomjeux,type,zone, id],
       (error, results) => {
         if (error) {
           throw error
