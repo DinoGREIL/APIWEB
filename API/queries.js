@@ -312,13 +312,13 @@ const getBenevoles = (request, response) => {
     })
   }
   const deleteRelation = (request, response) => {
-    const id = parseInt(request.params.id)
+    const { idbenevole,idcreneau,idzone } = request.body
   
-    pool.query('DELETE FROM creneaux WHERE idbenevole = $1', [id], (error, results) => {
+    pool.query('DELETE FROM creneaux WHERE idbenevole = $1 AND idcreneau = $2 AND idzone = $3', [idbenevole,idcreneau,idzone], (error, results) => {
       if (error) {
-        response.status(200).send(`no relation with ID: ${id}`)
+        response.status(200).send(`no relation with ID: ${idbenevole}`)
       }
-      response.status(200).send(`relation deleted with ID: ${id}`)
+      response.status(200).send(`relation deleted with ID: ${idbenevole}`)
     })
   }
 
