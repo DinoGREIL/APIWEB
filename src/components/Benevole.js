@@ -30,7 +30,7 @@ const Benevole = (props) => {
     
     return (
         <div>
-            <h2>Benevoles</h2>
+            <h2>Bénévoles</h2>
             <ul>
                 {benevoles.map((benevole) => (
                     <Unbenevole benevole={benevole} getbenevoles={getbenevoles}/>

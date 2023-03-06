@@ -1,0 +1,41 @@
+
+
+body {
+background-color: #F5F2D7;
+}
+
+button {
+background-color: #4CAF50;
+border-radius: 10px;
+border: 2px solid #4CAF50;
+color: white;
+padding: 10px 15px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+cursor: pointer;
+transition-duration: 0.4s;
+margin-left: 10px;
+}
+
+button:hover {
+background-color: #F5F2D7;
+color: black;
+}
+
+form {
+margin-left: 20px;
+}
+
+h2 {
+margin-left: 10px;
+}
+
+select{
+
+}
+
+option{
+
+}
