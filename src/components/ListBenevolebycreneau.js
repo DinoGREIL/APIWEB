@@ -49,16 +49,30 @@ const ListBenevolebycreneau = (props) => {
             {creneaux.map((creneau) => <option value={creneau.idcreneau} >{creneau.debut}-{creneau.fin}</option>)}
                                       
                   </select>
-            <ul>
+                  <table class="styled-table">
+    <thead>
+        <tr>
+            <th>Nom bénévole</th>
+            <th>Zone</th>
+            <th></th>
+        </tr>
+    </thead> 
+        <tbody>
+            
                 {benevoles.map((benevole) => (
-                    <li key={benevole.id}>
-                        {benevole.nombenevole} {benevole.prenom} {benevole.nomzone}
-                        <button onClick={() => supprimerRelation(benevole)}>
+                    <tr key={benevole.id}>
+                        <th>{benevole.nombenevole} {benevole.prenom}</th> 
+                        <th>{benevole.nomzone}</th>
+                        <th><button onClick={() => supprimerRelation(benevole)}>
                     Supprimer
-                </button>
-                    </li>
+                </button></th>
+                        
+                    </tr>
                 ))}
-            </ul>
+            
+        </tbody>
+        </table>
+            
             
         </div>
     );

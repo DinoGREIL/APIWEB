@@ -46,10 +46,24 @@ const Benevole = (props) => {
     return (
         <div>
             <h2>Bénévoles</h2>
-            <ul>
-                {benevoles.map((benevole) => (
+            <table class="styled-table">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Email</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {benevoles.map((benevole) => (
                     <Unbenevole benevole={benevole} getbenevoles={getbenevoles}/>
                 ))}
+        </tbody>
+        </table>
+            <ul>
+                
             </ul>
             <form
                 onSubmit={(event) => {
@@ -65,11 +79,26 @@ const Benevole = (props) => {
                     event.target.elements.prenom.value = '';
                     event.target.elements.email.value = '';
                 }}
-            >
-                <input type="text" name="nom"/>
-                <input type="text" name="prenom"/>
-                <input type="text" name="email"/>
-                <button type="submit">Ajouter Bénévole</button>
+            ><h3>Créer un bénévole</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Email</th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                <th><input type="text" name="nom"/></th>
+                <th><input type="text" name="prenom"/></th>
+                <th><input type="text" name="email"/></th>
+                <th><button type="submit">Ajouter Bénévole</button></th>
+                
+                </tr>
+                </tbody></table>
             </form>
         </div>
     );

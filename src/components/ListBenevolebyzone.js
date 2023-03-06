@@ -47,18 +47,29 @@ const ListBenevolebyzone = (props) => {
             {zones.map((zone) => <option value={zone.idzone} >{zone.nomzone}</option>)}
                                       
                   </select>
-            <ul>
+                  <table class="styled-table">
+    <thead>
+        <tr>
+            <th>Nom bénévole</th>
+            <th>Créneau</th>
+            <th></th>
+        </tr>
+    </thead> 
+        <tbody>
+            
                 {benevoles.map((benevole) => (
-                    <li key={benevole.id}>
-                        {benevole.nombenevole} {benevole.prenom} {benevole.debut}-{benevole.fin}
-                        
-                        <button onClick={() => supprimerRelation(benevole)}>
+                    <tr key={benevole.id}>
+                        <th>{benevole.nombenevole} {benevole.prenom}</th> 
+                        <th>{benevole.debut}-{benevole.fin}</th>
+                        <th><button onClick={() => supprimerRelation(benevole)}>
                     Supprimer
-                </button>
-                    </li>
-                    
+                </button></th>
+                        
+                    </tr>
                 ))}
-            </ul>
+            
+        </tbody>
+        </table>
             
         </div>
     );

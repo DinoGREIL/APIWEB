@@ -80,37 +80,32 @@ const Unjeu = (props) => {
 
 
     return (
-        <div>
+        
             
-                    <li key={jeu.idjeux}>
-                    <input type="text" id={jeu.idjeux} value={jeu.nomjeux} onChange={handleChangenom}></input>
-                    <select name="type" id={jeu.idjeux} value={jeu.type} onChange={handleChangetype}>
+                    <tr key={jeu.idjeux}>
+                      <th><input type="text" id={jeu.idjeux} value={jeu.nomjeux} onChange={handleChangenom}></input></th>
+                    <th><select name="type" id={jeu.idjeux} value={jeu.type} onChange={handleChangetype}>
                     <option value="enfant">enfant</option>
                     <option value="famille">famille</option>
                     <option value="ambiance">ambiance</option>
                     <option value="initié">initié</option>
                     <option value="expert">expert</option>
 
-                    </select>
-                    <select name="zone" id={jeu.idjeux} value={jeu.zone} onChange={handleChangezone}>
+                    </select></th>
+                    <th><select name="zone" id={jeu.idjeux} value={jeu.zone} onChange={handleChangezone}>
                   {zones.map((zone) => <option value={zone.idzone} >{zone.nomzone}</option>)}
-                  </select>
-                        <button onClick={() => supprimerJeu(jeu.idjeux)}>Supprimer</button>
-                        <button type="submit" onClick={()=>handleSubmit({
+                  </select></th>
+                    
+                        <th><button onClick={() => supprimerJeu(jeu.idjeux)}>Supprimer</button></th>
+                        <th><button type="submit" onClick={()=>handleSubmit({
                             idjeux: jeu.idjeux,
                             nomjeux: jeu.nomjeux,
                             type:jeu.type,
                             zone: jeu.zone
 
-                            
-
-
-                        })}>Sauvegarder</button>
-                    </li>
-               
-            
-            
-        </div>
+                        })}>Sauvegarder</button></th>
+                    </tr>
+      
     );
 };
 

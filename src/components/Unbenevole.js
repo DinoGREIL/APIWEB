@@ -64,18 +64,16 @@ const Unbenevole = (props) => {
         }
       }
     return (
-        <div>
-            
-            
-                
-                    <li key={benevole.idbenevole}>
+    
+                    <tr key={benevole.idbenevole}>
+                        <th><input type="text" id={benevole.idbenevole} value={benevole.nombenevole} onChange={handleChangenom}></input></th>
                         
-                        <input type="text" id={benevole.idbenevole} value={benevole.nombenevole} onChange={handleChangenom}></input>
-                        <input type="text" id={benevole.idbenevole} value={benevole.prenom} onChange={handleChangeprenom}></input>
-                        <input type="text" id={benevole.idbenevole} value={benevole.email} onChange={handleChangeemail}></input>
-                        <button onClick={() => supprimerBenevole(benevole.idbenevole)}>
+                        <th><input type="text" id={benevole.idbenevole} value={benevole.prenom} onChange={handleChangeprenom}></input></th>
+                        <th><input type="text" id={benevole.idbenevole} value={benevole.email} onChange={handleChangeemail}></input></th>
+                        <th><button onClick={() => supprimerBenevole(benevole.idbenevole)}>
                             Supprimer
-                        </button>
+                        </button></th>
+                        <th>
                         <button type="submit" onClick={()=>handleSubmit({
                             idbenevole: benevole.idbenevole,
                             nombenevole: benevole.nombenevole,
@@ -87,14 +85,14 @@ const Unbenevole = (props) => {
                             //email: event.target.elements.email.value,
 
 
-                        })}>Sauvegarder</button>
-                    </li>
+                        })}>Sauvegarder</button></th>
+                    </tr>
                 
             
             
                 
             
-        </div>
+        
     );
 };
 

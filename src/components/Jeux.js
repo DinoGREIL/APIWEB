@@ -53,11 +53,24 @@ const Jeu = (props) => {
     return (
         <div>
             <h2>Jeux</h2>
-            <ul>
-                {jeux.map((jeu) => (
+            <table class="styled-table">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Type</th>
+            <th>Zone</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+{jeux.map((jeu) => (
                     <Unjeu getjeux={getjeux} jeu={jeu}/>
                 ))}
-            </ul>
+    </tbody>
+    </table>
+    <h3>Créer un jeu</h3>
+            
             <form
                 onSubmit={(event) => {
                     event.preventDefault();
@@ -69,20 +82,35 @@ const Jeu = (props) => {
                     });
                     event.target.elements.name.value = '';
                 }}
-            >
-                <input type="text" name="name"/>
+            ><table><thead><tr>
+                <th>Nom</th>
+                <th>Type</th>
+                <th>Zone</th>
+                <th></th>
                 
-                <select  name="type">
+                </tr></thead>
+                <tbody>
+                    <tr>
+                        <th><input type="text" name="name"/></th>
+                        <th><select  name="type">
                             <option value="enfant">enfant</option>
                             <option value="famille">famille</option>
                             <option value="ambiance">ambiance</option>
                             <option value="initié">initié</option>
                             <option value="expert">expert</option>           
-                  </select>
-                  <select name="zone">
+                  </select></th>
+                        <th><select name="zone">
                   {zones.map((zone) => <option value={zone.idzone} >{zone.nomzone}</option>)}
-                  </select>
-                <button type="submit">Ajouter Jeu</button>
+                  </select></th>
+                        <th><button type="submit">Ajouter Jeu</button></th>
+                    </tr>
+                </tbody>
+                </table>
+                
+                
+                
+                  
+                
             </form>
         </div>
     );
