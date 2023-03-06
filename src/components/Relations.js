@@ -36,16 +36,37 @@ const Relations = (props) => {
         getbenevoles();
         getzones();
         getcreneaux()},[])
-    const ajouterRelation = async (relation) => {
-        console.log(relation)
-        
+
+    const ajouterRelation2 = async (relation)=>{
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ idCreneau: relation.creneau, idBenevole:relation.benevole, idZone:relation.zone })
         };
         await fetch('http://localhost:3002/relations', requestOptions)
-            .then(response => console.log(response))
+                    .then(response => {console.log(response)
+                    alert("Bénévole assigné à ce créneau et à cette zone")})
+    }
+    
+    const ajouterRelation = async (relation) => {
+        
+        
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ idCreneau: relation.creneau, idBenevole:relation.benevole, idZone:relation.zone })
+        };
+        await fetch('http://localhost:3002/getrelations',requestOptions).then(response =>{
+            if (response.status === 200){
+                ajouterRelation2(relation)
+            }
+            else{
+                alert("Ce bénévole est déjà occupé pour ce créneau")
+            }
+        }
+        
+        )
+        
             
         
     };

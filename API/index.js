@@ -51,6 +51,8 @@ app.get('/', (request, response) => {
   app.get('/jeuxzone',db.getJeuxzone)
   app.get('/benevolecreneauzone/:id',db.getBenevolesbycreneauxbyzone)
   app.get('/benevolezonecreneau/:id',db.getBenevolesbyzonebycreneau)
+  app.post('/getrelations',db.checkRelation)
+  app.post('/deleterelation',db.deleteRelation)
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)
   })

@@ -47,8 +47,8 @@ const Unbenevole = (props) => {
       }
       const handleSubmit=(benevole)=>{
 
-        console.log(benevole)
-        var reg =new RegExp("[\s@&\.-]");
+        
+        var reg =new RegExp("[\@&\.-]");
         var re = new RegExp("[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9]+)*$");
         
         if(benevole.nombenevole.match(reg)){

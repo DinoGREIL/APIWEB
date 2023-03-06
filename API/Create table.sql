@@ -27,4 +27,5 @@ CREATE TABLE relations (
       idBenevole int,
       foreign key (idBenevole) references benevoles(IDbenevole) ON DELETE CASCADE, 
       idZone int,
-      foreign key (idZone) references zones(IDzone) ON DELETE CASCADE);
+      foreign key (idZone) references zones(IDzone) ON DELETE CASCADE,
+      UNIQUE (idCreneau, idBenevole));

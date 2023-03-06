@@ -42,11 +42,7 @@ const Jeu = (props) => {
         });
         getjeux()},[])
 
-    const supprimerJeu = (id) => {
-        
-        fetch('http://localhost:3002/jeux/'+id, { method: 'DELETE' })
-        .then(() => getjeux());
-    };
+    
 
     return (
         <div>

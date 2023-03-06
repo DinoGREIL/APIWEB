@@ -15,7 +15,7 @@ const Benevole = (props) => {
         
         getbenevoles()},[])
     const ajouterBenevole = async (benevole) => {
-        console.log("jfdkgfd",benevole)
+       
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -27,15 +27,7 @@ const Benevole = (props) => {
         getbenevoles();
     };
 
-    const supprimerBenevole = (id) => {
-        
-        fetch('http://localhost:3002/benevoles/'+id, { method: 'DELETE' })
-        .then(() => getbenevoles())
-        
-        
-    };
-    const updateBenevole = (benevole)=>{console.log(benevole)}
-    const handleChangenom =(id)=>{console.log(id)}
+    
     return (
         <div>
             <h2>Benevoles</h2>

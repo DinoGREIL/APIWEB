@@ -23,6 +23,20 @@ const ListBenevolebycreneau = (props) => {
               
             })
     } 
+    const supprimerRelation = async (relation) => {
+        console.log(relation)
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ idbenevole: relation.idbenevole,idcreneau:relation.idcreneau,idzone:relation.idzone })
+        };
+        await fetch('http://localhost:3002/deleterelation', requestOptions)
+            .then(response => {console.log(response)
+            getbenevoles(relation.idcreneau)
+        })
+        
+        
+    }; 
     useEffect(()=>{
         getcreneaux()
         getbenevoles(1)},[])
@@ -39,7 +53,9 @@ const ListBenevolebycreneau = (props) => {
                 {benevoles.map((benevole) => (
                     <li key={benevole.id}>
                         {benevole.nombenevole} {benevole.prenom} {benevole.nomzone}
-                        
+                        <button onClick={() => supprimerRelation(benevole)}>
+                    Supprimer
+                </button>
                     </li>
                 ))}
             </ul>

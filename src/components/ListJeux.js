@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 const ListJeux = (props) => {
     const [jeux, setJeux] = useState([]);
-    const [zones, setZones] = useState([]);
     
     const getjeuxnom =  ()=>{
         fetch('http://localhost:3002/jeuxnom')

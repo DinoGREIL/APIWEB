@@ -313,15 +313,29 @@ const getBenevoles = (request, response) => {
   }
   const deleteRelation = (request, response) => {
     const { idbenevole,idcreneau,idzone } = request.body
-  
-    pool.query('DELETE FROM creneaux WHERE idbenevole = $1 AND idcreneau = $2 AND idzone = $3', [idbenevole,idcreneau,idzone], (error, results) => {
+    console.log(request.body)
+    pool.query('DELETE FROM relations WHERE idbenevole = $1 AND idcreneau = $2 AND idzone = $3', [idbenevole,idcreneau,idzone], (error, results) => {
       if (error) {
-        response.status(200).send(`no relation with ID: ${idbenevole}`)
+        throw error
       }
       response.status(200).send(`relation deleted with ID: ${idbenevole}`)
     })
   }
+  const checkRelation = (request,response)=>{
+    const { idCreneau,idBenevole,idZone } = request.body
+    pool.query('SELECT * FROM relations  WHERE idBenevole = $1 AND idCreneau = $2 ', [idBenevole,idCreneau], (error, results) => {
+      if (error) {
+        throw error
+      }
+      console.log(results.rows)
+      if (results.rows.length == 0){
+        response.status(200).send(results.rows)
+      }
+      else{response.status(201).send(results.rows)}
+      
+    })
 
+  }
   module.exports = {
     getBenevoles,
     getBenevoleById,
@@ -351,7 +365,8 @@ const getBenevoles = (request, response) => {
     getJeuxzone,
     getBenevolesbycreneauxbyzone,
     getBenevolesbyzonebycreneau,
-    deleteRelation
+    deleteRelation,
+    checkRelation
     
   }
 

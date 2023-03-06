@@ -20,7 +20,21 @@ const ListBenevolebyzone = (props) => {
               setzones(result);
               
             })
-    } 
+    }
+    const supprimerRelation = async (relation) => {
+        console.log(relation)
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ idbenevole: relation.idbenevole,idcreneau:relation.idcreneau,idzone:relation.idzone })
+        };
+        await fetch('http://localhost:3002/deleterelation', requestOptions)
+            .then(response => {console.log(response)
+            getbenevoles(relation.idzone)
+        })
+        
+        
+    }; 
     useEffect(()=>{
         getzones()
         getbenevoles(1)},[])
@@ -38,8 +52,11 @@ const ListBenevolebyzone = (props) => {
                     <li key={benevole.id}>
                         {benevole.nombenevole} {benevole.prenom} {benevole.debut}-{benevole.fin}
                         
-                        
+                        <button onClick={() => supprimerRelation(benevole)}>
+                    Supprimer
+                </button>
                     </li>
+                    
                 ))}
             </ul>
             
