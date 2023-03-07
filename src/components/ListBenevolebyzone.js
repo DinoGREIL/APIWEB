@@ -43,10 +43,10 @@ const ListBenevolebyzone = (props) => {
     
     return (
         <div>
-            <h2>Bénévoles par zone</h2><select  name="choice" onChange={e=>getbenevoles(e.target.value)}>
+            <h2>Bénévoles par zone : <select  name="choice" onChange={e=>getbenevoles(e.target.value)}>
             {zones.map((zone) => <option value={zone.idzone} >{zone.nomzone}</option>)}
                                       
-                  </select>
+                  </select></h2>
                   <table class="styled-table">
     <thead>
         <tr>

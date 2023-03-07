@@ -45,10 +45,10 @@ const ListBenevolebycreneau = (props) => {
     
     return (
         <div>
-            <h2>Bénévoles par créneau</h2><select  name="choice" onChange={e=>getbenevoles(e.target.value)}>
+            <h2>Bénévoles par créneau : <select name="choice" onChange={e=>getbenevoles(e.target.value)}>
             {creneaux.map((creneau) => <option value={creneau.idcreneau} >{creneau.debut}-{creneau.fin}</option>)}
                                       
-                  </select>
+                  </select></h2>
                   <table class="styled-table">
     <thead>
         <tr>
