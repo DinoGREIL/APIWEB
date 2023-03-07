@@ -80,7 +80,7 @@ const Benevole = (props) => {
                     event.target.elements.email.value = '';
                 }}
             ><h3>Créer un bénévole</h3>
-            <table>
+            <table class="styled-table">
                 <thead>
                     <tr>
                         <th>Nom</th>

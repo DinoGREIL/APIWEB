@@ -59,21 +59,34 @@ const ListJeux = (props) => {
 
     return (
         <div>
-            <h2>Jeux by </h2><select  name="choice" onChange={e=>changeorder(e.target.value)}>
+            <h2>Jeux triés par  <select  name="choice" onChange={e=>changeorder(e.target.value)}>
                             <option value="nom">nom</option>
                             <option value="type">type</option>
                             <option value="zone">zone</option>
                                       
-                  </select>
-            
-                  <ul>
+                  </select></h2>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Type</th>
+                                <th>Zone</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                
                 {jeux.map((jeu) => (
-                    <li key={jeu.id}>
-                        {jeu.nomjeux} {jeu.type} {jeu.nomzone}
+                    <tr key={jeu.id}>
+                        <th>{jeu.nomjeux}</th> <th>{jeu.type}</th> <th>{jeu.nomzone}</th>
                         
-                    </li>
+                    </tr>
                 ))}
-            </ul>
+            
+                            
+                        </tbody>
+                    </table>
+                  
         </div>
     );
 };

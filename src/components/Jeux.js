@@ -82,7 +82,7 @@ const Jeu = (props) => {
                     });
                     event.target.elements.name.value = '';
                 }}
-            ><table><thead><tr>
+            ><table class="styled-table"><thead><tr>
                 <th>Nom</th>
                 <th>Type</th>
                 <th>Zone</th>

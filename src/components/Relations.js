@@ -89,17 +89,34 @@ const Relations = (props) => {
                     });
                     
                 }}
-            >
-                <select name="creneau">
+            ><table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Créneau</th>
+                        <th>Bénévole</th>
+                        <th>Zone</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th><select name="creneau">
                   {creneaux.map((creneau) => <option value={creneau.idcreneau} >{creneau.debut} - {creneau.fin}</option>)}
-                  </select>
-                <select name="benevole">
+                  </select></th>
+                  <th><select name="benevole">
                   {benevoles.map((benevole) => <option value={benevole.idbenevole} >{benevole.nombenevole} {benevole.prenom}</option>)}
-                  </select>
-                <select name="zone">
+                  </select></th>
+                  <th><select name="zone">
                   {zones.map((zone) => <option value={zone.idzone} >{zone.nomzone}</option>)}
-                  </select>
-                <button type="submit">Ajouter Relation</button>
+                  </select></th>
+                  <th><button type="submit">Ajouter Relation</button></th>
+                    </tr>
+                </tbody>
+            </table>
+                
+                
+                
+                
             </form>
         </div>
     );
