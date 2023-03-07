@@ -69,7 +69,7 @@ const Jeu = (props) => {
                 ))}
     </tbody>
     </table>
-    <h3>Créer un jeu</h3>
+    
             
             <form
                 onSubmit={(event) => {
@@ -82,7 +82,7 @@ const Jeu = (props) => {
                     });
                     event.target.elements.name.value = '';
                 }}
-            ><table class="styled-table"><thead><tr>
+            ><h3>Créer un jeu</h3><table class="styled-table"><thead><tr>
                 <th>Nom</th>
                 <th>Type</th>
                 <th>Zone</th>

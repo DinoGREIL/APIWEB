@@ -31,7 +31,7 @@ return (
 		Bénévoles par zone
 		</NavLink>
 		<NavLink to='/parcreneau'>
-		Bénévoles par creneau
+		Bénévoles par créneau
 		</NavLink>
 		
 		

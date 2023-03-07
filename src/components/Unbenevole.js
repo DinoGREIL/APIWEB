@@ -80,11 +80,6 @@ const Unbenevole = (props) => {
                             prenom:benevole.prenom,
                             email: benevole.email
 
-                            //nom: event.target.elements.nom.value,
-                            //prenom: event.target.elements.prenom.value,
-                            //email: event.target.elements.email.value,
-
-
                         })}>Sauvegarder</button></th>
                     </tr>
                 
