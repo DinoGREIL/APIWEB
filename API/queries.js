@@ -7,7 +7,7 @@ const pg = require('pg')
   
 // })
 var conString = "postgres://bnbavatj:cRMYImf4Ns6i_H90QHkQMmpeeZf6U7aQ@mouse.db.elephantsql.com/bnbavatj" //Can be found in the Details page
-var client = new pg.Client(conString);
+
 const getBenevoles = (request, response) => {
   var client = new pg.Client(conString);
   client.connect(function(err) {
