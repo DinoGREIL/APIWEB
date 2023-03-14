@@ -7,7 +7,8 @@ const pg = require('pg')
   
 // })
 var conString = "postgres://bnbavatj:cRMYImf4Ns6i_H90QHkQMmpeeZf6U7aQ@mouse.db.elephantsql.com/bnbavatj" //Can be found in the Details page
-
+const bcrypt=require('bcryptjs')
+const jwt=require("jsonwebtoken")
 const getBenevoles = (request, response) => {
   var client = new pg.Client(conString);
   client.connect(function(err) {
@@ -497,6 +498,62 @@ const getBenevoles = (request, response) => {
     })
 
   })}
+  const connection= (request,response)=>{
+    
+    var client = new pg.Client(conString);
+  client.connect(async function(err) {
+    if(err) {
+      return console.error('could not connect to postgres', err);
+    }
+    const requet=`SELECT * FROM utilisateur WHERE identifiant = '${request.body.identifiant}';`
+    
+    try{const result=client.query(requet)
+        
+        if (!result.length){
+            const msg="Username or password is incorrect!"
+            return {
+                msg
+              };
+        }
+        
+        const comparer=await bcrypt.compare(
+            req.body.motdepasse,
+            result[0]['motdepasse'])
+            
+                if (!comparer){
+                    
+                    const msg="Username or password is incorrect!"
+                    return{
+                      msg
+                    };
+                  }
+                else{
+                      
+                    const token = jwt.sign({
+                        username: result[0].identifiant,
+                        userId: result[0].idutilisateur
+                      },
+                      'SECRETKEY', {
+                        expiresIn: '7d'
+                      }
+                    );
+                    const utilisateur=result[0]
+                    const msg="Logged in!"
+                    return {
+                        msg,
+                        token,
+                        utilisateur
+                        
+                      };
+
+            }
+    
+    }catch (err){
+        return err
+    }
+
+  })
+  }
   module.exports = {
     getBenevoles,
     getBenevoleById,
@@ -527,7 +584,8 @@ const getBenevoles = (request, response) => {
     getBenevolesbycreneauxbyzone,
     getBenevolesbyzonebycreneau,
     deleteRelation,
-    checkRelation
+    checkRelation,
+    connection
     
   }
 

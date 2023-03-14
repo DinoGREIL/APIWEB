@@ -4,7 +4,7 @@ const app = express()
 const port = 3002
 const db = require('./queries')
 const cors = require("cors");
-
+const bcrypt = require("bcryptjs")
 app.use(bodyParser.json())
 app.use(
   bodyParser.urlencoded({
@@ -53,6 +53,12 @@ app.get('/', (request, response) => {
   app.get('/benevolezonecreneau/:id',db.getBenevolesbyzonebycreneau)
   app.post('/getrelations',db.checkRelation)
   app.post('/deleterelation',db.deleteRelation)
+
+  app.post("/connect", db.connection)
+
+
+
+
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)
   })
